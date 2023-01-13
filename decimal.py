@@ -1,24 +1,47 @@
 #!/usr/bin/env python3
-
 # Created by: Joanne Santhosh
-# Created on: jan 2023
-# This program uses a function by reference
+# Created on: Jan 2023
+# This program passes by reference
+
+from typing import List
 
 
-def add_one(someVariable):
-    # function adds 1, by reference
+def round_off_number(decimal: List[float], decimal_places: int) -> None:
+    # This function rounds off decimal numbers
 
-    someVariable[0] = someVariable[0] + 1
+    rounded_decimal = decimal[0] * (10**decimal_places)
+    rounded_decimal = rounded_decimal + 0.5
+    rounded_decimal = int(rounded_decimal)
+    rounded_decimal = rounded_decimal / (10**decimal_places)
+
+    decimal[0] = rounded_decimal
+
 
 def main():
-    # this function gets a number and calls the add_one function
+    # this function gets a decimal and rounds off the decimal
 
-    someNumber = []
+    decimal_number = []
+
     # input
-    temp_var = int(input("Enter a number: "))
-    someNumber.append(temp_var)
-    add_one(someNumber)
-    print(someNumber[0])
+    user_number = input("Enter the number you want to round: ")
+    decimal_places = input("Enter how many decimal places do you want to round by: ")
+
+    try:
+        user_number = float(user_number)
+        decimal_places = int(decimal_places)
+
+        decimal_number.append(user_number)
+
+        # calls function
+        round_off_number(decimal_number, decimal_places)
+
+        print("\nThe rounded number is {0}".format(decimal_number[0]))
+
+    except Exception:
+        print("\nInvalid Input")
+
+    print("\nDone.")
+
 
 if __name__ == "__main__":
     main()
